@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="activity"
+            type="com.div.home.ui.activity.ProfileActivity" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.activity.ProfileActivity">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline27"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.08" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="@string/set_up_profle"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guideline27"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="o" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline27"
+            app:srcCompat="@drawable/ic_divol_logo" />
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline28"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView5">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <EditText
+                    android:id="@+id/edtFirstName"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints=""
+                    android:background="@drawable/edittext_background_light_yellow"
+                    android:hint="@string/first_name"
+                    android:inputType="textPersonName"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorTextGrey"
+                    tools:targetApi="o" />
+
+                <EditText
+                    android:id="@+id/edtLastName"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints=""
+                    android:background="@drawable/edittext_background_light_yellow"
+                    android:hint="@string/last_name"
+                    android:inputType="textPersonName"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorTextGrey"
+                    tools:targetApi="o" />
+
+                <EditText
+                    android:id="@+id/edtPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/edittext_background_light_yellow"
+                    android:hint="@string/phone_number"
+                    android:importantForAutofill="no"
+                    android:inputType="phone"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorTextGrey" />
+
+                <EditText
+                    android:id="@+id/edtAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints=""
+                    android:background="@drawable/edittext_background_light_yellow"
+                    android:hint="@string/address"
+                    android:inputType="textPostalAddress"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorTextGrey"
+                    tools:targetApi="o" />
+
+                <EditText
+                    android:id="@+id/edtCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints=""
+                    android:background="@drawable/edittext_background_light_yellow"
+                    android:hint="@string/city"
+                    android:inputType="textPostalAddress"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorTextGrey"
+                    tools:targetApi="o" />
+
+                <EditText
+                    android:id="@+id/edtState"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:layout_marginTop="12dp"
+                    android:autofillHints=""
+                    android:background="@drawable/edittext_background_light_yellow"
+                    android:hint="@string/state"
+                    android:inputType="textPostalAddress"
+                    android:padding="12dp"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textColorHint="@color/colorTextGrey"
+                    tools:targetApi="o" />
+
+            </LinearLayout>
+        </ScrollView>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.88" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="0dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/button_background_yellow"
+            android:elevation="30dp"
+            android:onClick="@{()-> activity.onSaveClicked()}"
+            android:text="@string/save"
+            android:textColor="#FFFFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+            tools:targetApi="lollipop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

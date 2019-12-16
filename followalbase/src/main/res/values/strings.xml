@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">followalbase</string>
+    <string-array name="WheelArrayDefault">
+        <item>Off</item>
+    </string-array>
+
+    <string name="read_more">show more</string>
+    <string name="read_less">show less</string>
+
+    <string name="Permissions_continue">Continue</string>
+    <string name="Permissions_not_now">Not now</string>
+    <string name="Permissions_permission_required">Permission required</string>
+
+    <string name="camera_permission">To capture photos and video, allow All-In-One Alarm access to the camera.</string>
+    <string name="camera_permission_permanently_denied">All-In-One Alarm needs the Camera permission to take photos or video, but it has been permanently denied. Please continue to app settings, select \"Permissions\", and enable \"Camera\".</string>
+    <string name="camera_permission_denied">All-In-One Alarm needs Camera permissions to take photos or video</string>
+
+    <string name="location_permission">To capture photos and video, allow All-In-One Alarm access to the camera.</string>
+    <string name="location_permission_permanently_denied">All-In-One requires Location permission in order to get solar information, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Location\".</string>
+    <string name="location_permission_denied">All-In-One Alarm needs Location permissions to get solar information</string>
+    <string name="contacts_permission_permanently_denied">All-In-One requires Contacts permission in order to get memory type alarm information, but it has been permanently denied. Please continue to the app settings menu, select \"Permissions\", and enable \"Contacts\".</string>
+    <string name="contacts_permission_denied">All-In-One Alarm needs Contacts permissions to get memory type alarm information</string>
+
+
+    <string name="ycuwq_datepicker_hour">H</string>
+    <string name="ycuwq_datepicker_minute">m</string>
+
+
+    <string name="time_ago_now">few moments ago</string>
+    <string name="time_ago_full_seconds">%1$d seconds ago</string>
+    <string name="time_ago_full_minute">%1$d minute ago</string>
+    <string name="time_ago_full_minutes">%1$d minutes ago</string>
+    <string name="time_ago_full_hour">%1$d hour ago</string>
+    <string name="time_ago_full_hours">%1$d hours ago</string>
+    <string name="time_ago_full_yesterday_at">Yesterday at %1$s</string>
+    <string name="time_ago_full_days">%1$d days ago</string>
+    <string name="time_ago_full_month">%1$d month ago</string>
+    <string name="time_ago_full_months">%1$d months ago</string>
+
+    <string name="time_ago_seconds">%1$d sec ago</string>
+    <string name="time_ago_minute">%1$d min ago</string>
+    <string name="time_ago_minutes">%1$d min ago</string>
+    <string name="time_ago_hour">%1$d h ago</string>
+    <string name="time_ago_hours">%1$d h ago</string>
+    <string name="time_ago_yesterday_at">Yesterday at %1$s</string>
+    <string name="time_ago_days">%1$d d ago</string>
+    <string name="time_ago_month">%1$d m ago</string>
+    <string name="time_ago_months">%1$d m ago</string>
+</resources>

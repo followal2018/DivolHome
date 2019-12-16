@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/popup_background_white"
+        android:elevation="90dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="20dp"
+        tools:ignore="ExtraText"
+        tools:targetApi="lollipop">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/no_internet"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/check_your_connection"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="22sp" />
+
+        <ImageButton
+            android:id="@+id/imgBtnReload"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/todo"
+            android:scaleType="center"
+            android:scaleX="2.0"
+            android:scaleY="2.0"
+            app:srcCompat="@drawable/ic_refresh_black_24dp" />
+
+        <Button
+            android:id="@+id/btnReload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/button_background_yellow"
+            android:text="@string/reload"
+            android:textColor="@color/QRCodeWhiteColor" />
+    </LinearLayout>
+
+</layout>

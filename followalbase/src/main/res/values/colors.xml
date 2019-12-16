@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorWhite">#FFFFFF</color>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="accent">#FF4081</color>
+
+    <color name="com_ycuwq_datepicker_selectedTextColor">#33aaff</color>
+    <color name="com_ycuwq_datepicker_divider">#cccccc</color>
+
+    <color name="progress_primary">@color/white</color>
+    <color name="progress_secondary">@color/gray_scale</color>
+    <color name="progress_max_active">@color/white</color>
+
+    <color name="gray_scale">#8affffff</color>
+    <color name="white">#fff</color>
+    <color name="color_story_reply">#6b7f93</color>
+</resources>

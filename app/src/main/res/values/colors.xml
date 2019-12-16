@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary">#FF9800</color>
+    <color name="colorPrimaryDark">#F57C00</color>
+    <color name="colorAccent">#FFC107</color>
+    <color name="colorPrimaryLight">#FFE0B2</color>
+
+    <color name="colorPrimaryText">#000000</color>
+    <color name="colorSecondaryText">#E8E8E8</color>
+
+    <color name="colorTextGrey">#a9a9a9</color>
+
+    <color name="appliance_on">#5CB886</color>
+    <color name="appliance_off">#E31E24</color>
+    <color name="error_color" tools:keep="@color/error_color">#000000</color>
+
+    <color name="QRCodeWhiteColor">#ffffff</color>
+    <color name="QRCodeBlackColor">#000000</color>
+</resources>
