@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhite"
+    android:orientation="vertical">
+
+    <com.followal.base.widget.DTextView
+        android:id="@+id/txtMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_5sdp"
+        android:background="@drawable/ic_rounded_corner"
+        android:gravity="center"
+        android:padding="@dimen/_6sdp"
+        android:text="Last Activated Resume will be deactivated automatically! Continue?"
+        android:textColor="#212121"
+        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
+        app:textFontFace="REGULAR" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#b2b2b2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <com.followal.base.widget.DTextView
+            android:id="@+id/txtPositive"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_rounded_corner"
+            android:gravity="center"
+            android:padding="@dimen/_6sdp"
+            android:text="Yes"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_14sdp" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="#b2b2b2" />
+
+        <com.followal.base.widget.DTextView
+            android:id="@+id/txtNegative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_rounded_corner"
+            android:gravity="center"
+            android:padding="@dimen/_6sdp"
+            android:text="Cancel"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/_14sdp" />
+    </LinearLayout>
+</LinearLayout>

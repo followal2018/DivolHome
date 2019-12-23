@@ -23,24 +23,89 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.MagicRoomActivity"></activity>
-        <activity android:name=".ui.activity.WebUrlViewActivity" />
-        <activity android:name=".ui.activity.SetTimerActivity" />
-        <activity android:name=".ui.activity.FamilyActivity" />
-        <activity android:name=".ui.activity.BuyPageActivity" />
-        <activity android:name=".ui.activity.SettingsActivity" />
-        <activity android:name=".ui.activity.ProfileActivity" />
-        <activity android:name=".ui.activity.RestoreActivity" />
-        <activity android:name=".ui.activity.AuthActivity" />
-        <activity android:name=".ui.activity.HomeScreenActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".ui.activity.ConnectDeviceActivity"></activity>
+        <activity android:name=".ui.activity.WifiSettingsActivity" />
+        <activity android:name=".ui.activity.AddApplianceActivity" />
+        <activity android:name=".ui.activity.BecomeMemberActivity" />
+        <activity android:name=".ui.activity.AddMemberActivity" />
+        <activity android:name=".ui.activity.AddRoomActivity" />
+        <activity android:name=".ui.activity.AboutActivity" />
+        <activity android:name=".ui.activity.FeedbackActivity" />
+        <activity android:name=".ui.activity.GoogleAlexaSetupActivity" />
+        <activity
+            android:name=".ui.activity.MagicRoomActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.WebUrlViewActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.SetTimerActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.FamilyActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.BuyPageActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.MagicRoomStatic"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.WifiSettings"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.SettingsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.ProfileActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.RestoreActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.AuthActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".ui.activity.HomeScreenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity
+            android:name=".ui.activity.MainActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
+            tools:ignore="InnerclassSeparator" />
     </application>
 
 </manifest>

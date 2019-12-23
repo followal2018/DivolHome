@@ -73,4 +73,18 @@
             <enum name="mirror" value="2" />
         </attr>
     </declare-styleable>
+
+    <style name="AlertDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="actionButtonStyle">@style/btnStyleWhite13</item>
+        <item name="buttonStyle">@style/btnStyleWhite13</item>
+        <item name="colorButtonNormal">@color/white</item>
+    </style>
+
+    <style name="btnStyleWhite13" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/colorWhite</item>
+        <item name="android:textSize">@dimen/_13sdp</item>
+        <item name="android:background">@drawable/ic_rounded_corner</item>
+        <item name="textFontFace">REGULAR</item>
+    </style>
 </resources>

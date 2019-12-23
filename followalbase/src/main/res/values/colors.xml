@@ -17,4 +17,5 @@
     <color name="gray_scale">#8affffff</color>
     <color name="white">#fff</color>
     <color name="color_story_reply">#6b7f93</color>
+    <color name="colorTransparent">#00000000</color>
 </resources>

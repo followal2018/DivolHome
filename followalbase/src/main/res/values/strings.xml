@@ -46,4 +46,34 @@
     <string name="time_ago_days">%1$d d ago</string>
     <string name="time_ago_month">%1$d m ago</string>
     <string name="time_ago_months">%1$d m ago</string>
+
+    <string name="action_yes">Settings</string>
+    <string name="action_no">No</string>
+    <string name="ok">OK</string>
+    <string name="title_permission_denied">Permission denied</string>
+    <string name="btn_i_am_sure">I\'m sure</string>
+    <string name="btn_retry">Re-Try</string>
+    <string name="msg_sms_permission_denied">Without this permission the app is unable to detect verification code received in your SMS. Are you sure you want to deny this permission?</string>
+    <string name="msg_otp_detection_disabled">SMS permission is not allowed. So auto detection of OTP is disabled.</string>
+    <string name="msg_camera_picture_permission_denied">Without the camera and storage permissions the app is unable to open camera, take a picture and store to the device. Are you sure you want to deny these permissions?</string>
+    <string name="msg_camera_picture_permission">To capture a picture and store to the device the application requires access to the camera and storage. Can you allow camera and storage permissions?</string>
+    <string name="msg_camera_video_permission_denied">Without the camera and storage permissions the app is unable to open camera and take a video. Are you sure you want to deny these permissions?</string>
+    <string name="msg_camera_video_permission">To take a video the application requires access to the camera and storage. Can you allow camera and storage permissions?</string>
+    <string name="msg_location_permission_denied">Without the location permission the app is unable to open map and pick location. Are you sure you want to deny this permission?</string>
+    <string name="msg_location_permission">To pick location the application requires location permission. Can you allow the permission?</string>
+    <string name="msg_storage_permission_denied">Without the storage permission the app is unable to run perfectly. Are you sure you want to deny this permission?</string>
+    <string name="msg_storage_permission">The application requires storage permission to run perfectly. Can you allow storage permission?</string>
+    <string name="msg_gallery_permission_denied">Without the storage permission the app is unable to pick image from gallery. Are you sure you want to deny this permission?</string>
+    <string name="msg_gallery_permission">To pick image from gallery the application requires storage permission. Can you allow storage permission?</string>
+    <string name="msg_contacts_permission_denied">Without the contacts permission the app is unable to get contacts information. Are you sure you want to deny this permission?</string>
+    <string name="msg_contacts_permission">The application requires contacts permission to get contacts information. Can you allow contacts permission?</string>
+    <string name="msg_microphone_permission_denied">Without the microphone permission the app is unable to record audio. Are you sure you want to deny this permission?</string>
+    <string name="msg_microphone_permission">The application requires microphone permission to record audio. Can you allow microphone permission?</string>
+    <string name="msg_basic_permissions_denied">Without the storage permissions the app is unable to run perfectly. Are you sure you want to deny these permissions?</string>
+    <string name="msg_basic_permissions">The application requires storage permissions to run perfectly. Can you allow storage permissions?</string>
+    <string name="msg_qr_scan_permission_denied">Without this permission the app is unable to open camera and scan QR code. Are you sure you want to deny this permission?</string>
+    <string name="msg_qr_scan_permission">To scan the QR code the application required access to the camera. Can you allow camera permission?</string>
+    <string name="msg_calender_permission">To add event in calender the application require calender permission.Can you allow the permission? </string>
+    <string name="msg_calender_permission_denied">Without this permission the app is unable to open calender. Are you sure you want to deny this permission?</string>
+
 </resources>

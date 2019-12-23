@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_3sdp"
+        android:background="@drawable/back_category"
+        android:orientation="vertical"
+        android:padding="@dimen/_1sdp">
+
+        <com.followal.base.roundedimageview.RoundedImageView
+            android:id="@+id/imgApplianceIcon"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            app:riv_corner_radius="@dimen/_5sdp" />
+
+        <TextView
+            android:id="@+id/txtDisplayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:padding="@dimen/_6sdp"
+            android:textColor="@color/colorTextGrey"
+            android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+
+    </LinearLayout>
+</layout>
+

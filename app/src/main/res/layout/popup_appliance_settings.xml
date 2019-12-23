@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="250dp"
+    android:gravity="center"
+    android:padding="50dp"
+    android:background="@drawable/popup_background_white">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/fan_speed"
+        android:textStyle="bold"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryText"
+        android:layout_marginBottom="20dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/minusSpeedBT"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/yellow_circle"
+            android:text="@string/minus"
+            android:layout_gravity="center"
+
+            android:textStyle="bold"
+            android:textSize="30sp"
+            android:textColor="@color/QRCodeWhiteColor"  />
+
+        <TextView
+            android:id="@+id/showSpeedTV"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center"
+            android:autoSizeTextType="uniform"
+            android:gravity="center"
+            android:padding="12dp"
+            android:text="@string/_04"
+            android:textColor="@color/colorPrimaryText"
+
+            android:textStyle="bold"
+            tools:ignore="UnusedAttribute" />
+
+        <Button
+            android:id="@+id/plusSpeedBT"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:background="@drawable/yellow_circle"
+            android:text="@string/plus"
+            android:layout_gravity="center"
+            android:textColor="@color/QRCodeWhiteColor"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

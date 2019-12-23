@@ -1,6 +1,5 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">DivolHome</string>
-
 
     <string name="todo">TODO</string>
     <string name="version_info">version info</string>
@@ -24,5 +23,137 @@
     <string name="do_you_want_to_delete">Do You Want to Delete</string>
     <string name="no">no</string>
     <string name="yes">Yes</string>
+    <string name="appliance_1">Appliance 1</string>
+    <string name="appliance_2">Appliance 2</string>
+    <string name="appliance_3">Appliance 3</string>
+    <string name="appliance_4">Appliance 4</string>
+
+    <string name="settings">Settings</string>
+
+    <string name="buy">Buy</string>
+    <string name="price_14_999">Price: 14,999/-</string>
+    <string name="price_of_product_may_vary_on_the_consumer_loaction">- Price of product may vary on the consumer loaction.</string>
+    <string name="already_have">Already Have ?</string>
+    <string name="user_will_receive_the_product_within_3_7_working_days" tools:ignore="TypographyDashes">- User will receive the product within 3-7 working days.</string>
+    <string name="price_of_the_product_include_all_taxes">- Price of the Product include all taxes.</string>
+    <string name="price_of_the_product_stated_is_in_indian_rupee">- Price of the Product Stated is in INDIAN RUPEE.</string>
+
+    <string name="add_room">Add Room</string>
+    <string name="enter_room_name">Enter Room Name :</string>
+    <string name="proceed">Proceed</string>
+    <string name="note_n_user_will_be_guided_with_the_process_of_adding_room_n_if_user_fails_to_configure_device_in_one_try_try_again_n_if_user_fails_to_configure_room_in_a_couple_tries_contact_the_company_service_team">Note :\n- User will be guided with the process of adding room.\n- If user fails to configure device in one try, try again.\n- If user fails to configure room in a couple tries, contact the company service team.</string>
+    <string name="need_help">Need Help ?</string>
+
+    <string name="become_member">Become Member</string>
+    <string name="add_member_que">Add Member ?</string>
+    <string name="add">Add</string>
+    <string name="scan_the_qr_code_and_the_requested_member_will_be_added_to_the_members_tree">- Scan the QR CODE and the requested Member will be added to the Members Tree.</string>
+    <string name="to_add_a_member_click_add_button_then_in_other_device_click_become_button">- To Add a member click Add button, Then in other device Click Become button.</string>
+    <string name="how_to_add_member_que">How to Add Member</string>
+    <string name="become">Become</string>
+    <string name="members">Members</string>
+
+    <string name="add_member">Add Member</string>
+    <string name="become_a_member">Become a Member ?</string>
+    <string name="how_to_add_member">How to add Member</string>
+    <string name="the_person_who_become_a_member_will_become_child_of_the_admin">- The person who become a member will become child of the admin.</string>
+    <string name="the_person_who_add_a_member_will_become_admin">- The person who add a member will become admin.</string>
+    <string name="note">Note :</string>
+    <string name="scan_the_above_qr_code_generated_on_this_device">- Scan the above Qr Code generated on this device.</string>
+    <string name="open_become_a_member_screen_in_other_phone">- Open Become a Member Screen in other phone.</string>
+
+    <string name="google_assistant">Google Assistant</string>
+    <string name="control_your_appliances_by_voice_commands_using_your_google_home_and_google_home_mini">Control your appliances by voice commands using your google home and google home mini.</string>
+    <string name="control_your_appliances_by_voice_commands_using_your_all_amazon_alexa_enabled_products">Control your appliances by voice commands using your all amazon alexa enabled products.</string>
+    <string name="coming_soon">Coming Soon…</string>
+    <string name="know_more">know more</string>
+    <string name="amazon_alexa">Amazon Alexa</string>
+    <string name="amazon_alexa_text_vie_w_where_there_is_explaintaiton">Amazon Alexa text vie w where there is explaintaiton</string>
+    <string name="voice_enabled_automation">Voice Enabled Automation</string>
+    <string name="coming_later_this_february">Coming later this February</string>
+    <string name="google_assistant_text_vie_w_where_there_is_explaintaiton">Google Assistant text vie w where there is explaintaiton</string>
+    <string name="back">Back</string>
+
+    <string name="feedback">FeedBack</string>
+    <string name="subject_heading">Subject/Heading</string>
+    <string name="write_your_complaints_feedbacks_etc_over_here">Write your complaints, Feedbacks etc over here</string>
+    <string name="feedback_are_normally_replied_in_3_working_days_if">User feedback/complaint will be replied within 3 Working days.\nFeedback is sent through email. </string>
+
+    <string name="about_us">About Us</string>
+    <string name="about_usInformation">Divol Home makes your home smarter and more power-efficient, Using our next-generation AI Technology not only gives you the power to control your appliances but it protects your appliance and makes it more durable by tuning the power consumption according to their respective uses.</string>
+
+    <string name="action_yes">Settings</string>
+    <string name="action_no">No</string>
+    <string name="ok">OK</string>
+    <string name="title_permission_denied">Permission denied</string>
+    <string name="btn_i_am_sure">I\'m sure</string>
+    <string name="btn_retry">Re-Try</string>
+    <string name="msg_sms_permission_denied">Without this permission the app is unable to detect verification code received in your SMS. Are you sure you want to deny this permission?</string>
+    <string name="msg_otp_detection_disabled">SMS permission is not allowed. So auto detection of OTP is disabled.</string>
+    <string name="msg_camera_picture_permission_denied">Without the camera and storage permissions the app is unable to open camera, take a picture and store to the device. Are you sure you want to deny these permissions?</string>
+    <string name="msg_camera_picture_permission">To capture a picture and store to the device the application requires access to the camera and storage. Can you allow camera and storage permissions?</string>
+    <string name="msg_camera_video_permission_denied">Without the camera and storage permissions the app is unable to open camera and take a video. Are you sure you want to deny these permissions?</string>
+    <string name="msg_camera_video_permission">To take a video the application requires access to the camera and storage. Can you allow camera and storage permissions?</string>
+    <string name="msg_location_permission_denied">Without the location permission the app is unable to open map and pick location. Are you sure you want to deny this permission?</string>
+    <string name="msg_location_permission">To pick location the application requires location permission. Can you allow the permission?</string>
+    <string name="msg_storage_permission_denied">Without the storage permission the app is unable to run perfectly. Are you sure you want to deny this permission?</string>
+    <string name="msg_storage_permission">The application requires storage permission to run perfectly. Can you allow storage permission?</string>
+    <string name="msg_gallery_permission_denied">Without the storage permission the app is unable to pick image from gallery. Are you sure you want to deny this permission?</string>
+    <string name="msg_gallery_permission">To pick image from gallery the application requires storage permission. Can you allow storage permission?</string>
+    <string name="msg_contacts_permission_denied">Without the contacts permission the app is unable to get contacts information. Are you sure you want to deny this permission?</string>
+    <string name="msg_contacts_permission">The application requires contacts permission to get contacts information. Can you allow contacts permission?</string>
+    <string name="msg_microphone_permission_denied">Without the microphone permission the app is unable to record audio. Are you sure you want to deny this permission?</string>
+    <string name="msg_microphone_permission">The application requires microphone permission to record audio. Can you allow microphone permission?</string>
+    <string name="msg_basic_permissions_denied">Without the storage permissions the app is unable to run perfectly. Are you sure you want to deny these permissions?</string>
+    <string name="msg_basic_permissions">The application requires storage permissions to run perfectly. Can you allow storage permissions?</string>
+    <string name="msg_qr_scan_permission_denied">Without this permission the app is unable to open camera and scan QR code. Are you sure you want to deny this permission?</string>
+    <string name="msg_qr_scan_permission">To scan the QR code the application required access to the camera. Can you allow camera permission?</string>
+    <string name="msg_calender_permission">To add event in calender the application require calender permission.Can you allow the permission? </string>
+    <string name="msg_calender_permission_denied">Without this permission the app is unable to open calender. Are you sure you want to deny this permission?</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="_04">04</string>
+    <string name="go_back">go back</string>
+
+    <string name="wifi_configuration">Wifi Configuration</string>
+    <string name="ssid">SSID</string>
+    <string name="hi_speed_wifi">Hi Speed Wifi</string>
+    <string name="unknown_location">Unknown location</string>
+    <plurals name="num_locations_reported">
+        <item quantity="zero">No location reported</item>
+        <item quantity="one">One location reported</item>
+        <item quantity="other">%d locations reported</item>
+    </plurals>
+    <string name="fan_speed">Fan Speed</string>
+    <string name="select_appliance">Select Appliance</string>
+    <string name="close">Close</string>
+
+    <string-array name="appliances">
+        <item>appliance one</item>
+        <item>appliance two</item>
+        <item>appliance three</item>
+        <item>appliance four</item>
+        <item>appliance five</item>
+        <item>appliance six</item>
+        <item>appliance seven</item>
+        <item>appliance eight</item>
+        <item>appliance nine</item>
+        <item>appliance ten</item>
+        <item>appliance eleven</item>
+        <item>appliance twelve</item>
+        <item>appliance thirteen</item>
+        <item>appliance fourteen</item>
+        <item>appliance fifteen</item>
+        <item>appliance sixteen</item>
+        <item>appliance seventeen</item>
+        <item>appliance eighteen</item>
+        <item>appliance nineteen</item>
+        <item>appliance twenty</item>
+    </string-array>
+
+
+    <string name="turn_on_appliance_switch">TURN ON APPLIANCE SWITCH</string>
+
+    <string name="connect_device_note">Note: \n-User should ON the switch of that appliance only which they want to assign with the app button which they have just created.</string>
 
 </resources>

@@ -21,6 +21,7 @@ import com.daimajia.androidanimations.library.YoYo;
 import com.div.home.R;
 import com.div.home.databinding.ActivityHomeScreenBinding;
 import com.div.home.databinding.DialogDeleteBinding;
+import com.div.home.model.WeatherResponse;
 import com.div.home.ui.adapter.RoomsAdapter;
 import com.div.home.ui.base.BaseActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -30,10 +31,27 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import timber.log.Timber;
 
 import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TASK;
+import static com.div.home.util.Constants.Pref.PREF_USER_CITY;
+import static com.div.home.util.Constants.Pref.PREF_USER_FIRST_NAME;
+import static com.div.home.util.Constants.Pref.PREF_USER_STATE;
 
 public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.ItemClickListener {
     private static final String TAG = HomeScreenActivity.class.getSimpleName();
@@ -55,15 +73,15 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         binding = DataBindingUtil.setContentView(this, R.layout.activity_home_screen);
         binding.setActivity(this);
 
-        String firstName = pref.getString("firstName", "user name").toUpperCase();
+        String firstName = pref.getString(PREF_USER_FIRST_NAME, "USER NAME").toUpperCase();
         if (firstName.equals("USER NAME")) {
             Intent intent = new Intent(HomeScreenActivity.this, RestoreActivity.class)
                     .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
             finish();
         } else {
-            binding.txtNotification.setText("WELCOME " + firstName);
-//            new weatherTask().execute();
+            binding.txtNotification.setText(String.format("WELCOME %s", firstName));
+            getWhetherInfo();
         }
     }
 
@@ -163,7 +181,7 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
                 .itemView.findViewById(R.id.roomNameHomeScreenTV)).getText().toString().toUpperCase();
 
         DialogDeleteBinding dialogDeleteBinding = DataBindingUtil.inflate(LayoutInflater.from(this), R.layout.dialog_delete, null, false);
-        dialogDeleteBinding.txtRoomName.setText(title1 + " ?");
+        dialogDeleteBinding.txtRoomName.setText(String.format("%s ?", title1));
         final PopupWindow popupWindow = new PopupWindow(dialogDeleteBinding.getRoot(), LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
         dialogDeleteBinding.btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -187,5 +205,50 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         YoYo.with(Techniques.Landing)
                 .duration(200)
                 .playOn(dialogDeleteBinding.getRoot());
+    }
+
+    public void getWhetherInfo() {
+        RequestAPI requestAPI = ApiClient.getClient().create(RequestAPI.class);
+        requestAPI.getWeather(String.format("%s,%s", pref.getString(PREF_USER_CITY, "null"), pref.getString(PREF_USER_STATE, "null")), "metric", "a640d4ae4d22ad515ac39bf60854c64d").enqueue(new Callback<WeatherResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<WeatherResponse> call, @NotNull Response<WeatherResponse> serverResponse) {
+                WeatherResponse response = serverResponse.body();
+                binding.txtDisplayTemp.setText(String.format("%s°C", response != null ? response.getMain().getTemp() : ""));
+                binding.txtCityState.setText(String.format("%s,%s", pref.getString(PREF_USER_CITY, "null"), pref.getString(PREF_USER_STATE, "null")));
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<WeatherResponse> call, @NotNull Throwable t) {
+                Timber.e("onServiceFailure: %s", t.getLocalizedMessage());
+            }
+        });
+    }
+
+    interface RequestAPI {
+        @GET("weather")
+        Call<WeatherResponse> getWeather(@Query("q") String city, @Query("units") String units, @Query("appid") String appId);
+    }
+
+    static class ApiClient {
+        static Retrofit retrofit = null;
+
+        static Retrofit getClient() {
+            final String BaseUrl = "https://api.openweathermap.org/data/2.5/";
+            HttpLoggingInterceptor logging = new HttpLoggingInterceptor();
+            logging.setLevel(HttpLoggingInterceptor.Level.BODY);
+            OkHttpClient okHttpClient = new OkHttpClient().newBuilder()
+                    .connectTimeout(5, TimeUnit.MINUTES)
+                    .readTimeout(5, TimeUnit.MINUTES)
+                    .writeTimeout(5, TimeUnit.MINUTES).addInterceptor(logging)
+                    .build();
+            if (retrofit == null) {
+                retrofit = new Retrofit.Builder()
+                        .baseUrl(BaseUrl)
+                        .client(okHttpClient)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+            }
+            return retrofit;
+        }
     }
 }
