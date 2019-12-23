@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:elevation="90dp"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/QRCodeWhiteColor"
+        app:cardCornerRadius="12dp"
+        tools:targetApi="lollipop">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:contentDescription="@string/todo"
+                android:scaleType="centerCrop"
+                android:src="@drawable/alexa_pop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@string/turn_off_all_devices"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="18dp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:text="@string/you_must_have_to_turn_off_all_the_devices_before_add_new_devices_please_turn_off_all_the_devices_after_that_click_on_done_button_to_continue_add_device"
+                android:textColor="@color/colorPrimaryText"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btnBackAlexa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                android:text="@string/done"
+                android:textColor="@color/QRCodeWhiteColor" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

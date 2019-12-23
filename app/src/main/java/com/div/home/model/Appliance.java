@@ -1,6 +1,5 @@
 package com.div.home.model;
 
-import com.div.home.util.AppContext;
 import com.div.home.util.Utils;
 
 import org.parceler.Parcel;
@@ -16,15 +15,18 @@ public class Appliance {
     String displayName;
     int status;
     int icon;
+    String image;
+    String key;
 
     public Appliance() {
     }
 
-    public Appliance(String displayName, int status, int icon) {
-        this.id = Utils.getCurrentSSID(AppContext.getInstance().getContext());
+    public Appliance(String displayName, int status, int icon, String image) {
+        this.id = Utils.generateUniqueId();
         this.displayName = displayName;
         this.status = status;
         this.icon = icon;
+        this.image = image;
     }
 
     public String getId() {
@@ -57,5 +59,13 @@ public class Appliance {
 
     public void setIcon(int icon) {
         this.icon = icon;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

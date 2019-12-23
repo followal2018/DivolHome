@@ -155,5 +155,8 @@
     <string name="turn_on_appliance_switch">TURN ON APPLIANCE SWITCH</string>
 
     <string name="connect_device_note">Note: \n-User should ON the switch of that appliance only which they want to assign with the app button which they have just created.</string>
+    <string name="turn_off_all_devices">Turn Off All Devices</string>
+    <string name="you_must_have_to_turn_off_all_the_devices_before_add_new_devices_please_turn_off_all_the_devices_after_that_click_on_done_button_to_continue_add_device">You must have to turn off all the devices before add new devices please turn off all the devices after that click on Done Button to continue add device.</string>
+    <string name="done">Done</string>
 
 </resources>

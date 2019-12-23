@@ -30,12 +30,17 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by Nirav Mandani on 16-12-2019.
  * Followal Solutions
  */
 public class Utils {
+
+    public static String generateUniqueId() {
+        return "" + UUID.randomUUID();
+    }
 
     public static boolean isNetworkConnected(Context con) {
         ConnectivityManager cm = (ConnectivityManager) con.getSystemService(Context.CONNECTIVITY_SERVICE);

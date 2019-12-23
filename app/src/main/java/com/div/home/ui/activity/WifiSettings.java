@@ -173,7 +173,7 @@ public class WifiSettings extends AppCompatActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef =  database.getReference("users").child(uid).child("rooms")
-                .child(roomname).child("static").child("wifi");
+                .child(roomname).child("appliances").child("wifi");
 
 
         String url = "http://192.168.4.1/spur?spur="+ssid+"-"+pass+"-"+uid+"-"+roomname+"-"; // http://192.168.4.1/spur?spur="+ssid+"-"+pass+"-"uid-roomname-

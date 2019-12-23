@@ -35,6 +35,7 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
     private static final String TAG = MagicRoomActivity.class.getSimpleName();
     private final String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     private final ArrayList<String> containts = new ArrayList<>();
+    private static final int SETTING_WIFI_REQUEST = 1115;
     ActivityMagicRoomBinding binding;
     private ApplianceAdapter adapter;
 
@@ -63,10 +64,16 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
         assert bundle != null;
         final String RoomNameSTR = Objects.requireNonNull(bundle.getString("roomName")).toLowerCase();
         FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference mGetReference = mDatabase.getReference("users/" + userId + "/rooms/" + RoomNameSTR);
-        mGetReference.addChildEventListener(new ChildEventListener() {
+        final DatabaseReference myRef = mDatabase.getReference("users").child(userId).child("rooms")
+                .child(RoomNameSTR).child("appliances");
+
+        myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+
+
+
+
                 containts.add(String.valueOf(dataSnapshot.getValue()).toUpperCase());
                 binding.rvAppliances.setLayoutManager(new LinearLayoutManager(MagicRoomActivity.this));
                 adapter = new ApplianceAdapter(MagicRoomActivity.this, containts);
@@ -112,7 +119,7 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("users").child(userId).child("rooms")
-                .child(roomName).child("static");
+                .child(roomName).child("appliances");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
@@ -121,18 +128,18 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
                     String wifiState = Objects.requireNonNull(dataSnapshot.child("wifi").getValue()).toString();
 
                     if (wifiState.equals("null") || wifiState.isEmpty()) {
-                        startActivity(WifiSettingsActivity.getIntent(MagicRoomActivity.this, roomName));
+                        startActivityForResult(WifiSettingsActivity.getIntent(MagicRoomActivity.this, roomName), SETTING_WIFI_REQUEST);
                     } else {
                         if (dataSnapshot.hasChild("appliance one")) {
                             Toast.makeText(MagicRoomActivity.this, "Ready!", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(MagicRoomActivity.this, "Select Appliance", Toast.LENGTH_SHORT).show();
-                            openSelectApplianceDialog();
+//                            openSelectApplianceDialog();
                         }
                     }
                 } else {
                     myRef.child("wifi").setValue("null");
-                    startActivity(WifiSettingsActivity.getIntent(MagicRoomActivity.this, roomName));
+                    startActivityForResult(WifiSettingsActivity.getIntent(MagicRoomActivity.this, roomName), SETTING_WIFI_REQUEST);
                 }
             }
 
@@ -182,7 +189,7 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
 
             @Override
             public void onApplianceSelect(Appliance appliance) {
-                Toast.makeText(MagicRoomActivity.this, "Added :-> " + appliance.getDisplayName(), Toast.LENGTH_SHORT).show();
+
             }
 
             @Override
@@ -209,6 +216,18 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
 
     public void onClickTimer() {
         Toast.makeText(this, "Comming Soon!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case SETTING_WIFI_REQUEST:
+                if(resultCode == RESULT_OK){
+                    openSelectApplianceDialog();
+                }
+                break;
+        }
     }
 
     @Override

@@ -106,7 +106,7 @@ public class MagicRoomStatic extends AppCompatActivity implements View.OnClickLi
         roomName.setText(roomname);
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(userId).child("rooms").child(roomname.toLowerCase()).child("static");
+        DatabaseReference myRef = database.getReference("users").child(userId).child("rooms").child(roomname.toLowerCase()).child("appliances");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -226,7 +226,7 @@ public class MagicRoomStatic extends AppCompatActivity implements View.OnClickLi
         String roomname = Objects.requireNonNull(bundle.getString("message")).toLowerCase();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("users").child(userId).child("rooms").child(roomname).child("static");
+        DatabaseReference myRef = database.getReference("users").child(userId).child("rooms").child(roomname).child("appliances");
 
         switch (v.getId()) {
 
@@ -307,7 +307,7 @@ public class MagicRoomStatic extends AppCompatActivity implements View.OnClickLi
                 assert bundle != null;
                 String roomname = Objects.requireNonNull(bundle.getString("message")).toLowerCase();
 
-                flash = database.getReference("users").child(userID).child("rooms").child(roomname).child("static").child("fan speed");
+                flash = database.getReference("users").child(userID).child("rooms").child(roomname).child("appliances").child("fan speed");
 
                 final TextView speedText;
                 Button plus, minus;
@@ -386,7 +386,7 @@ public class MagicRoomStatic extends AppCompatActivity implements View.OnClickLi
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef =  database.getReference("users").child(userId).child("rooms")
-                .child(roomname).child("static");
+                .child(roomname).child("appliances");
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

@@ -66,6 +66,8 @@ public class ConnectDeviceActivity extends BaseActivity {
         } else {
             Toast.makeText(this, "You Cant Add new device limit is over", Toast.LENGTH_SHORT).show();
         }
+
+
     }
 
     public void getData() {
@@ -78,8 +80,20 @@ public class ConnectDeviceActivity extends BaseActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference staticAppliance = database.getReference("users").child(userId).child("rooms")
-                .child(roomName).child("static");
-        staticAppliance.child(key).setValue(0);
+                .child(roomName).child("appliances");
+        staticAppliance.child(key);
+
+        DatabaseReference applianceId = database.getReference("users").child(userId).child("rooms").child(roomName).child("appliances").child(key).child("id");
+        DatabaseReference applianceDisplayName = database.getReference("users").child(userId).child("rooms").child(roomName).child("appliances").child(key).child("displayName");
+        DatabaseReference applianceStatus = database.getReference("users").child(userId).child("rooms").child(roomName).child("appliances").child(key).child("status");
+        DatabaseReference applianceIcon = database.getReference("users").child(userId).child("rooms").child(roomName).child("appliances").child(key).child("icon");
+        DatabaseReference applianceImage = database.getReference("users").child(userId).child("rooms").child(roomName).child("appliances").child(key).child("image");
+
+        applianceId.setValue(appliance.getId());
+        applianceDisplayName.setValue(appliance.getDisplayName());
+        applianceStatus.setValue(0);
+        applianceIcon.setValue(appliance.getIcon());
+        applianceImage.setValue(appliance.getImage());
 
         /**
          * Change Appliance Structure when change database structure

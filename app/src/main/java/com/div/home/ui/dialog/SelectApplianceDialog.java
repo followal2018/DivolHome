@@ -87,9 +87,9 @@ public class SelectApplianceDialog extends DialogFragment implements SelectAppli
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("users").child(userId).child("rooms")
-                .child(roomName).child("static");
+                .child(roomName).child("appliances");
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 storedAppliances = (int) dataSnapshot.getChildrenCount() - 1;
@@ -116,24 +116,78 @@ public class SelectApplianceDialog extends DialogFragment implements SelectAppli
 
     @Override
     public void onApplianceClicked(Appliance appliance) {
-        startActivity(ConnectDeviceActivity.getIntent(context, roomName, storedAppliances, appliance));
-        dismiss();
+        checkApplianceStatus(appliance);
+    }
+
+
+    public void checkApplianceStatus(Appliance appliance){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("users").child(userId).child("rooms")
+                .child(roomName).child("appliances");
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    if(!dataSnapshot1.getKey().equals("wifi")){
+                        if(dataSnapshot1.child("status").getValue().toString().equals("1")){
+                            showOffAllDeviceDialog(appliance);
+                            return;
+                        }
+                    }
+                }
+
+                startActivity(ConnectDeviceActivity.getIntent(context, roomName, storedAppliances, appliance));
+                dismiss();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+    }
+
+    public void showOffAllDeviceDialog(Appliance appliance){
+
+        TurnOffAllDeviceDialog dialog = TurnOffAllDeviceDialog.getInstance();
+        dialog.setListener(new TurnOffAllDeviceDialog.ActionListener() {
+            @Override
+            public void onDoneClicked() {
+                checkApplianceStatus(appliance);
+            }
+        });
+        dialog.show(getChildFragmentManager(), null);
+
+
+       /* DialogTurnOffAllDevicesBinding dialogTurnOffAllDevicesBinding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.dialog_turn_off_all_devices,null,false);
+        final PopupWindow popupWindow = new PopupWindow(dialogTurnOffAllDevicesBinding.getRoot(), LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, true);
+        popupWindow.showAtLocation(dialogTurnOffAllDevicesBinding.getRoot(), Gravity.CENTER, 0, 0);
+        popupWindow.setOutsideTouchable(false);
+        dialogTurnOffAllDevicesBinding.btnBackAlexa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkApplianceStatus(appliance);
+                popupWindow.dismiss();
+            }
+        });*/
     }
 
     public ArrayList<Appliance> getAppliances() {
         ArrayList<Appliance> appliances = new ArrayList<>();
-        appliances.add(new Appliance("Fan", 0, R.drawable.ic_home_icon));
-        appliances.add(new Appliance("AC", 0, R.drawable.ic_moon));
-        appliances.add(new Appliance("Light", 0, R.drawable.ic_rainbow));
-        appliances.add(new Appliance("Tubelight", 0, R.drawable.ic_star));
-        appliances.add(new Appliance("Computer", 0, R.drawable.ic_yellow_house));
-        appliances.add(new Appliance("TV", 0, R.drawable.ic_timer_black_24dp));
-        appliances.add(new Appliance("Fan", 0, R.drawable.ic_home_icon));
-        appliances.add(new Appliance("AC", 0, R.drawable.ic_moon));
-        appliances.add(new Appliance("Light", 0, R.drawable.ic_rainbow));
-        appliances.add(new Appliance("Tubelight", 0, R.drawable.ic_star));
-        appliances.add(new Appliance("Computer", 0, R.drawable.ic_yellow_house));
-        appliances.add(new Appliance("TV", 0, R.drawable.ic_timer_black_24dp));
+        appliances.add(new Appliance("Fan", 0, R.drawable.ic_home_icon, ""));
+        appliances.add(new Appliance("AC", 0, R.drawable.ic_moon, ""));
+        appliances.add(new Appliance("Light", 0, R.drawable.ic_rainbow, ""));
+        appliances.add(new Appliance("Tubelight", 0, R.drawable.ic_star, ""));
+        appliances.add(new Appliance("Computer", 0, R.drawable.ic_yellow_house, ""));
+        appliances.add(new Appliance("TV", 0, R.drawable.ic_timer_black_24dp, ""));
+        appliances.add(new Appliance("Fan", 0, R.drawable.ic_home_icon, ""));
+        appliances.add(new Appliance("AC", 0, R.drawable.ic_moon, ""));
+        appliances.add(new Appliance("Light", 0, R.drawable.ic_rainbow, ""));
+        appliances.add(new Appliance("Tubelight", 0, R.drawable.ic_star, ""));
+        appliances.add(new Appliance("Computer", 0, R.drawable.ic_yellow_house, ""));
+        appliances.add(new Appliance("TV", 0, R.drawable.ic_timer_black_24dp, ""));
         return appliances;
     }
 

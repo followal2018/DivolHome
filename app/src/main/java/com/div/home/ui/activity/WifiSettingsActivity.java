@@ -39,7 +39,7 @@ public class WifiSettingsActivity extends BaseActivity {
     PermissionUtils permissionUtils;
     boolean isGPS = false;
 
-    public static Intent getIntent(Context context, String roomName){
+    public static Intent getIntent(Context context, String roomName) {
         Intent intent = new Intent(context, WifiSettingsActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_CLEAR_TASK);
         intent.putExtra("roomName", roomName);
@@ -171,9 +171,10 @@ public class WifiSettingsActivity extends BaseActivity {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("users").child(uid).child("rooms")
-                .child(roomname).child("static").child("wifi");
+                .child(roomname).child("appliances").child("wifi");
 
         myRef.setValue("ok");
+        setResult(RESULT_OK);
         finish();
 
         /*String url = "http://192.168.4.1/spur?spur=" + ssid + "-" + pass + "-" + uid + "-" + roomname + "-"; // http://192.168.4.1/spur?spur="+ssid+"-"+pass+"-"uid-roomname-

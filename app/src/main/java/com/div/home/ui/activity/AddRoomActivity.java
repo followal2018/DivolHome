@@ -55,7 +55,7 @@ public class AddRoomActivity extends BaseActivity {
             roomNameRef = database.getReference("users").child(userID).child("rooms");
             roomNameRef.child(binding.edtRoomName.getText().toString().toLowerCase().trim()).setValue("");
             staticAppliance = database.getReference("users").child(userID).child("rooms")
-                    .child(binding.edtRoomName.getText().toString().toLowerCase().trim()).child("static");
+                    .child(binding.edtRoomName.getText().toString().toLowerCase().trim()).child("appliances");
           /*  staticAppliance.child("appliance one").setValue(0);
             staticAppliance.child("appliance two").setValue(0);
             staticAppliance.child("appliance three").setValue(0);
