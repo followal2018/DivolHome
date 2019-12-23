@@ -13,8 +13,9 @@
         <com.followal.base.roundedimageview.RoundedImageView
             android:id="@+id/imgApplianceIcon"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:scaleType="centerCrop"
+            android:layout_height="150dp"
+            android:padding="@dimen/_22sdp"
+            android:scaleType="centerInside"
             app:riv_corner_radius="@dimen/_5sdp" />
 
         <TextView
@@ -23,10 +24,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:ellipsize="end"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:maxLines="2"
             android:padding="@dimen/_6sdp"
             android:textColor="@color/colorTextGrey"
+            android:textSize="22sp"
             android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
 
     </LinearLayout>

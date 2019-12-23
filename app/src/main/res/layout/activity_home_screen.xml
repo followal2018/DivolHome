@@ -101,10 +101,10 @@
             android:layout_height="0dp"
             android:contentDescription="@string/todo"
             android:elevation="90dp"
+            android:onClick="@{()-> activity.onClickAddRoom()}"
             android:scaleType="fitCenter"
             android:scaleX="0.8"
             android:scaleY=".8"
-            android:onClick="@{()-> activity.onClickAddRoom()}"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toStartOf="@+id/guideline20"
@@ -120,10 +120,10 @@
             android:layout_height="0dp"
             android:contentDescription="@string/todo"
             android:elevation="12dp"
+            android:onClick="@{()-> activity.onClickTimer()}"
             android:scaleType="fitCenter"
             android:scaleX="0.8"
             android:scaleY=".8"
-            android:onClick="@{()-> activity.onClickTimer()}"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toStartOf="@+id/guideline21"
@@ -139,10 +139,10 @@
             android:layout_height="0dp"
             android:contentDescription="@string/todo"
             android:elevation="12dp"
+            android:onClick="@{()-> activity.onClickAddFamily()}"
             android:scaleType="fitCenter"
             android:scaleX="0.8"
             android:scaleY="0.8"
-            android:onClick="@{()-> activity.onClickAddFamily()}"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toStartOf="@+id/guideline17"
@@ -158,10 +158,10 @@
             android:layout_height="0dp"
             android:contentDescription="@string/todo"
             android:elevation="12dp"
+            android:onClick="@{()-> activity.onClickAI()}"
             android:scaleType="fitCenter"
             android:scaleX="0.5"
             android:scaleY="0.5"
-            android:onClick="@{()-> activity.onClickAI()}"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
@@ -177,10 +177,10 @@
             android:layout_height="0dp"
             android:contentDescription="@string/todo"
             android:elevation="12dp"
+            android:onClick="@{()-> activity.onClickSetting()}"
             android:scaleType="fitCenter"
             android:scaleX="0.8"
             android:scaleY=".8"
-            android:onClick="@{()-> activity.onClickSetting()}"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toEndOf="@+id/imageView3"
@@ -194,14 +194,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.12" />
+            app:layout_constraintGuide_percent="0.06" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.32" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline24"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.31" />
+            app:layout_constraintGuide_percent="0.26" />
 
         <TextView
             android:id="@+id/txtDisplayTemp"
@@ -221,7 +228,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.27" />
+            app:layout_constraintGuide_percent="0.20" />
 
         <androidx.constraintlayout.widget.Guideline
             android:layout_width="wrap_content"
@@ -236,6 +243,7 @@
             android:autoSizeTextType="uniform"
             android:gravity="center_horizontal|top"
             android:text="@string/loading"
+            android:layout_marginBottom="@dimen/_8sdp"
             app:layout_constraintBottom_toTopOf="@+id/guideline24"
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintStart_toStartOf="@+id/guideline20"
@@ -254,6 +262,19 @@
             android:layout_marginBottom="10dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline18"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline26" />
+
+        <Button
+            android:id="@+id/btnSharedRooms"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:background="@drawable/back_shared_rooms"
+            android:gravity="center"
+            android:padding="@dimen/_8sdp"
+            android:text="@string/shared_rooms"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/guideline26"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline24" />
 

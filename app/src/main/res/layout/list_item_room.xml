@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="160dp"
         android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="4dp"
         android:elevation="12dp"
@@ -15,28 +15,45 @@
         app:cardCornerRadius="12dp"
         tools:targetApi="lollipop">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/room_name"
-            android:layout_gravity="center"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:textColor="@color/colorPrimaryText"
-            android:id="@+id/roomNameHomeScreenTV" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/deleteIV"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            app:srcCompat="@drawable/ic_remove_circle_black_24dp"
-            android:tint="@android:color/holo_red_dark"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_gravity="end"
-            android:scaleX="1.8"
-            android:scaleY="1.8"
-            android:visibility="gone"
-            android:contentDescription="@string/todo" />
+            <ImageView
+                android:id="@+id/imgRoom"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/todo"
+                android:scaleType="centerCrop"
+                android:visibility="visible"
+                app:srcCompat="@drawable/alexa_pop" />
+
+            <TextView
+                android:id="@+id/roomNameHomeScreenTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="@string/room_name"
+                android:textColor="@color/white"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/deleteIV"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:contentDescription="@string/todo"
+                android:scaleX="1.8"
+                android:scaleY="1.8"
+                android:tint="@android:color/holo_red_dark"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_remove_circle_black_24dp" />
+
+        </FrameLayout>
 
     </androidx.cardview.widget.CardView>
 </layout>

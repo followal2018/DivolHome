@@ -79,11 +79,16 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
 
                 if (!dataSnapshot.getKey().equals("wifi")) {
                     Appliance appliance = new Appliance();
-                    appliance.setId(dataSnapshot.child("id").getValue().toString());
-                    appliance.setDisplayName(dataSnapshot.child("displayName").getValue().toString());
-                    appliance.setIcon(Integer.parseInt(dataSnapshot.child("icon").getValue().toString()));
-                    appliance.setImage(dataSnapshot.child("icon").getValue().toString());
-                    appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
+                    if (dataSnapshot.child("id").getValue() != null)
+                        appliance.setId(dataSnapshot.child("id").getValue().toString());
+                    if (dataSnapshot.child("displayName").getValue() != null)
+                        appliance.setDisplayName(dataSnapshot.child("displayName").getValue().toString());
+                    if (dataSnapshot.child("icon").getValue() != null)
+                        appliance.setIcon(Integer.parseInt(dataSnapshot.child("icon").getValue().toString()));
+                    if (dataSnapshot.child("image").getValue() != null)
+                        appliance.setImage(dataSnapshot.child("image").getValue().toString());
+                    if (dataSnapshot.child("status").getValue() != null)
+                        appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
                     appliance.setKey(dataSnapshot.getKey());
                     /*if (containts.contains(appliance)) {
                         containts.set(containts.indexOf(appliance), appliance);
@@ -99,14 +104,23 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
 
                 if (!dataSnapshot.getKey().equals("wifi")) {
                     Appliance appliance = new Appliance();
+                    if (dataSnapshot.child("id").getValue() != null)
                     appliance.setId(dataSnapshot.child("id").getValue().toString());
+                    if (dataSnapshot.child("displayName").getValue() != null)
                     appliance.setDisplayName(dataSnapshot.child("displayName").getValue().toString());
+                    if (dataSnapshot.child("icon").getValue() != null)
                     appliance.setIcon(Integer.parseInt(dataSnapshot.child("icon").getValue().toString()));
-                    appliance.setImage(dataSnapshot.child("icon").getValue().toString());
+                    if (dataSnapshot.child("image").getValue() != null)
+                    appliance.setImage(dataSnapshot.child("image").getValue().toString());
+                    if (dataSnapshot.child("status").getValue() != null)
                     appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
                     appliance.setKey(dataSnapshot.getKey());
-                    containts.set(containts.indexOf(appliance), appliance);
-                    adapter.notifyItemChanged(containts.indexOf(appliance));
+
+                    int index = containts.indexOf(appliance);
+                    if(index >=0 && index < containts.size()){
+                        containts.set(index, appliance);
+                        adapter.notifyItemChanged(index);
+                    }
                 }
             }
 
@@ -121,8 +135,10 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
                     appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
                     appliance.setKey(dataSnapshot.getKey());
                     final int index = containts.indexOf(appliance);
-                    containts.remove(appliance);
-                    adapter.notifyItemChanged(index);
+                    if(index >=0 && index < containts.size()){
+                        containts.remove(appliance);
+                        adapter.notifyItemChanged(index);
+                    }
                 }
             }
 

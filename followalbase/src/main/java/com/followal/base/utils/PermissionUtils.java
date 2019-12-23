@@ -13,6 +13,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
@@ -164,7 +165,7 @@ public class PermissionUtils {
             case PERMISSION_LOCATION:
                 requestPermissions(PERMISSION_LOCATION, R.string.msg_location_permission,
                         R.string.msg_location_permission_denied,
-                        REQUEST_LOCATION_PERMISSION_SETTING, Manifest.permission.ACCESS_FINE_LOCATION);
+                        REQUEST_LOCATION_PERMISSION_SETTING, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION);
                 break;
             case PERMISSION_READ_CONTACTS:
                 requestPermissions(PERMISSION_READ_CONTACTS, R.string.msg_contacts_permission,
@@ -199,12 +200,104 @@ public class PermissionUtils {
         }
     }
 
-    @SuppressLint({"NewApi", "CheckResult"})
     private void requestPermissions(int permission, int messageRequest, int messageOnDenied,
                                     int requestCode, String... permissions) {
         RxPermissions rxPermissions = new RxPermissions(activity);
-        rxPermissions.request(permissions)
-                .subscribe(granted -> {
+        rxPermissions.request(permissions).doOnNext(aBoolean -> {
+            if (aBoolean) { // Always true pre-M
+                listener.onPermissionGranted(permission);
+            } else {
+                if (activity == null && fragment == null) return;
+                Activity activity = this.activity != null ? this.activity : fragment.getActivity();
+                boolean showRationale = false;
+                for (String p : permissions) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                        showRationale = activity.shouldShowRequestPermissionRationale(p);
+                    }
+                    if (showRationale) break;
+                }
+                if (!showRationale) {
+                    final boolean[] openSettings = {false};
+
+                    Dialog dialog = new Dialog(context);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.layout_alert_dialog);
+
+                    DTextView txtTitle = dialog.findViewById(R.id.txtTitle);
+                    txtTitle.setVisibility(View.GONE);
+                    DTextView txtMessage = dialog.findViewById(R.id.txtMessage);
+                    DTextView txtPositive = dialog.findViewById(R.id.txtPositive);
+                    DTextView txtNegative = dialog.findViewById(R.id.txtNegative);
+                    txtTitle.setText(context.getString(R.string.title_permission_denied));
+                    txtMessage.setText(messageRequest);
+                    txtPositive.setText(context.getString(R.string.action_yes));
+                    txtPositive.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            openSettings[0] = true;
+                            openAppPermissionSettings(requestCode);
+                        }
+                    });
+
+                    txtNegative.setText(context.getString(R.string.action_no));
+                    txtNegative.setOnClickListener(view -> {
+                        dialog.dismiss();
+                        if (!openSettings[0]) {
+                            listener.onPermissionDenied(permission);
+                        }
+                    });
+
+                    dialog.show();
+                } else {
+
+                    final boolean[] retry = {false};
+                    Dialog dialog = new Dialog(context);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.setCancelable(false);
+                    dialog.setContentView(R.layout.layout_alert_dialog);
+
+                    DTextView txtTitle = dialog.findViewById(R.id.txtTitle);
+                    DTextView txtMessage = dialog.findViewById(R.id.txtMessage);
+                    DTextView txtPositive = dialog.findViewById(R.id.txtPositive);
+                    DTextView txtNegative = dialog.findViewById(R.id.txtNegative);
+                    txtTitle.setText(context.getString(R.string.title_permission_denied));
+                    txtMessage.setText(messageOnDenied);
+                    txtPositive.setText(context.getString(R.string.btn_retry));
+                    txtPositive.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            retry[0] = true;
+                            rxPermissions.request(permissions)
+                                    .subscribe(granted1 -> {
+                                        if (granted1) {
+                                            listener.onPermissionGranted(permission);
+                                        } else {
+                                            listener.onPermissionDenied(permission);
+                                        }
+                                    });
+                        }
+                    });
+
+                    txtNegative.setText(context.getString(R.string.btn_i_am_sure));
+                    txtNegative.setOnClickListener(view -> {
+                        dialog.dismiss();
+                        if (!retry[0]) {
+                            listener.onPermissionDenied(permission);
+                        }
+                    });
+
+                    dialog.show();
+                }
+            }
+        }).doOnError(Throwable::printStackTrace).doOnComplete(() -> {
+            Log.e("PermissionUtils", "Do On Complete Called ");
+        }).subscribe();
+               /* .subscribe(granted -> {
                     if (granted) { // Always true pre-M
                         listener.onPermissionGranted(permission);
                     } else {
@@ -293,7 +386,7 @@ public class PermissionUtils {
                             dialog.show();
                         }
                     }
-                }, Throwable::printStackTrace);
+                }, Throwable::printStackTrace);*/
     }
 
     private void openAppPermissionSettings(int requestCode) {
@@ -364,7 +457,9 @@ public class PermissionUtils {
     public boolean checkLocationPermission() {
         return !(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M &&
                 ContextCompat.checkSelfPermission(context,
-                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED);
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(context,
+                        Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED);
     }
 
     public boolean checkReadContactsPermission() {

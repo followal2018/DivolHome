@@ -21,36 +21,37 @@ import java.util.List;
  */
 public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.ViewHolder> {
 
-    Context context;
     private final List<Appliance> mData;
+    Context context;
     private ApplianceAdapter.ItemClickListener itemClicker;
 
-    public ApplianceAdapter(Context context, List<Appliance> data){
+    public ApplianceAdapter(Context context, List<Appliance> data) {
         this.context = context;
         this.mData = data;
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ListItemApplianceBinding binding = DataBindingUtil.inflate(LayoutInflater.from(context), R.layout.list_item_appliance, parent, false);
         return new ViewHolder(binding);
     }
 
     @Override
-    public void onBindViewHolder(ApplianceAdapter.ViewHolder holder, int position){
+    public void onBindViewHolder(ApplianceAdapter.ViewHolder holder, int position) {
         Appliance appliance = mData.get(position);
-        holder.binding.applianceNameRVAPPLIANCE.setText(appliance.getDisplayName());
+        holder.binding.txtApplianceName.setText(appliance.getDisplayName());
         holder.binding.card.setCardBackgroundColor(ContextCompat.getColor(context, appliance.getStatus() == 1 ? R.color.appliance_on : R.color.appliance_off));
+        holder.binding.txtStatus.setText(appliance.getStatus() == 1 ? "ON" : "OFF");
+//        holder.binding.imgAppliance.setImageDrawable(ContextCompat.getDrawable(context, appliance.getIcon()));
         holder.binding.getRoot().setOnClickListener(view -> {
             if (itemClicker != null) itemClicker.onItemClick(appliance);
         });
-
     }
 
     @Override
-    public  int getItemCount(){
-        return  mData.size();
+    public int getItemCount() {
+        return mData.size();
     }
 
     public void setClickListener(ItemClickListener itemClickListener) {
@@ -62,7 +63,7 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.View
         void onItemClick(Appliance appliance);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         ListItemApplianceBinding binding;
 

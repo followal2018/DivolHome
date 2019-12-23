@@ -38,6 +38,27 @@
             app:layout_constraintGuide_percent="0.86" />
 
         <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline95"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline85"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.80" />
+
+        <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline59"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,17 +76,36 @@
             android:id="@+id/txtRoomName"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center"
             android:padding="6dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/room_name"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline60"
-            app:layout_constraintEnd_toStartOf="@+id/guideline58"
-            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintEnd_toStartOf="@+id/guideline85"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageButton
+            android:id="@+id/btnSettings"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="@drawable/back_setting_button"
+            android:gravity="center"
+            android:text="@string/shared_rooms"
+            android:textColor="@color/white"
+            android:tint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/guideline60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline85"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_settings_black_24dp" />
+
         <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:contentDescription="@string/todo"
@@ -131,10 +171,10 @@
             android:id="@+id/rvAppliances"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline57"
-            app:layout_constraintEnd_toStartOf="@+id/guideline58"
+            app:layout_constraintBottom_toTopOf="@+id/guideline61"
+            app:layout_constraintEnd_toStartOf="@+id/guideline95"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="@+id/guideline59"
+            app:layout_constraintStart_toStartOf="@+id/guideline5"
             app:layout_constraintTop_toBottomOf="@+id/txtRoomName"
             app:layout_constraintVertical_bias="1.0" />
 

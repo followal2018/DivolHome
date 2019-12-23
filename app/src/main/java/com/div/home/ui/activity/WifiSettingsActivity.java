@@ -150,9 +150,9 @@ public class WifiSettingsActivity extends BaseActivity {
         if (pass.isEmpty()) {
             YoYo.with(Techniques.Tada)
                     .duration(700)
-                    .playOn(findViewById(R.id.wifiPassET));
+                    .playOn(binding.edtWifiPass);
 
-            binding.edtWifiPass.setError("Enter Wifi name please");
+            binding.edtWifiPass.setError("Please Enter Wifi Password");
             binding.edtWifiPass.requestFocus();
         } else {
             sendAndRequestResponse();

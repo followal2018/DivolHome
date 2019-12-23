@@ -25,8 +25,9 @@
         <TextView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:gravity="center"
-            android:padding="6dp"
+            android:gravity="start"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/add_member"
             android:textStyle="bold"
             app:autoSizeTextType="uniform"
@@ -58,16 +59,14 @@
 
         <Button
             android:id="@+id/btnBecomeMember"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:background="@drawable/button_background_yellow"
             android:elevation="24dp"
             android:onClick="@{()-> activity.onClickBecomeMember()}"
-            android:text="@string/become_a_member"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:text="@string/become_member"
             android:textColor="@android:color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -94,55 +93,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/how_to_add_member"
+                android:text="@string/scan_to_add_members"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="12dp"
-                android:text="@string/open_become_a_member_screen_in_other_phone"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="12dp"
-                android:text="@string/scan_the_above_qr_code_generated_on_this_device"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="15dp"
-                android:layout_marginRight="12dp"
-                android:text="@string/note"
-                android:textSize="15sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="12dp"
-                android:text="@string/the_person_who_add_a_member_will_become_admin"
-                android:textSize="15sp" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="12dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="12dp"
-                android:text="@string/the_person_who_become_a_member_will_become_child_of_the_admin"
-                android:textSize="15sp" />
 
         </LinearLayout>
 

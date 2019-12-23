@@ -101,7 +101,6 @@ public class ProfileActivity extends BaseActivity {
         checkPermission();
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
         createLocationRequest();
-
     }
 
     public void onSaveClicked() {

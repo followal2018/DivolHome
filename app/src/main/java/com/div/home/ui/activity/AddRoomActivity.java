@@ -56,11 +56,6 @@ public class AddRoomActivity extends BaseActivity {
             roomNameRef.child(binding.edtRoomName.getText().toString().toLowerCase().trim()).setValue("");
             staticAppliance = database.getReference("users").child(userID).child("rooms")
                     .child(binding.edtRoomName.getText().toString().toLowerCase().trim()).child("appliances");
-          /*  staticAppliance.child("appliance one").setValue(0);
-            staticAppliance.child("appliance two").setValue(0);
-            staticAppliance.child("appliance three").setValue(0);
-            staticAppliance.child("appliance four").setValue(0);
-            staticAppliance.child("fan speed").setValue(1);*/
             staticAppliance.child("wifi").setValue("null");
 
             Intent intent = HomeScreenActivity.getIntent(this)

@@ -131,6 +131,7 @@ public class SelectApplianceDialog extends DialogFragment implements SelectAppli
 
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     if(!dataSnapshot1.getKey().equals("wifi")){
+                        if(dataSnapshot1.child("status").getValue() != null)
                         if(dataSnapshot1.child("status").getValue().toString().equals("1")){
                             showOffAllDeviceDialog(appliance);
                             return;

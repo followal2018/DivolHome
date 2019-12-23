@@ -10,8 +10,6 @@ import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.DataBindingUtil;
 
-import com.daimajia.androidanimations.library.Techniques;
-import com.daimajia.androidanimations.library.YoYo;
 import com.div.home.R;
 import com.div.home.databinding.ActivityAuthBinding;
 import com.div.home.ui.base.BaseActivity;
@@ -41,7 +39,7 @@ public class AuthActivity extends BaseActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_auth);
         binding.setActivity(this);
 
-        YoYo.with(Techniques.RotateIn)
+        /*YoYo.with(Techniques.RotateIn)
                 .duration(700)
                 .playOn(binding.imgMoon);
 
@@ -60,7 +58,7 @@ public class AuthActivity extends BaseActivity {
 
         YoYo.with(Techniques.RotateIn)
                 .duration(700)
-                .playOn(binding.imgRainbow);
+                .playOn(binding.imgRainbow);*/
 
     }
 
