@@ -2,15 +2,16 @@ package com.div.home.ui.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.div.home.R;
 import com.div.home.databinding.ListItemApplianceBinding;
+import com.div.home.model.Appliance;
 
 import java.util.List;
 
@@ -21,10 +22,10 @@ import java.util.List;
 public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.ViewHolder> {
 
     Context context;
-    private final List<String> mData;
+    private final List<Appliance> mData;
     private ApplianceAdapter.ItemClickListener itemClicker;
 
-    public ApplianceAdapter(Context context, List<String> data){
+    public ApplianceAdapter(Context context, List<Appliance> data){
         this.context = context;
         this.mData = data;
     }
@@ -38,8 +39,13 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.View
 
     @Override
     public void onBindViewHolder(ApplianceAdapter.ViewHolder holder, int position){
-        String appliance = mData.get(position);
-        holder.binding.applianceNameRVAPPLIANCE.setText(appliance);
+        Appliance appliance = mData.get(position);
+        holder.binding.applianceNameRVAPPLIANCE.setText(appliance.getDisplayName());
+        holder.binding.card.setCardBackgroundColor(ContextCompat.getColor(context, appliance.getStatus() == 1 ? R.color.appliance_on : R.color.appliance_off));
+        holder.binding.getRoot().setOnClickListener(view -> {
+            if (itemClicker != null) itemClicker.onItemClick(appliance);
+        });
+
     }
 
     @Override
@@ -53,23 +59,17 @@ public class ApplianceAdapter extends RecyclerView.Adapter<ApplianceAdapter.View
 
     @SuppressWarnings("EmptyMethod")
     public interface ItemClickListener {
-        void onItemClick();
+        void onItemClick(Appliance appliance);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder{
 
         ListItemApplianceBinding binding;
 
         ViewHolder(ListItemApplianceBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
-            this.binding.getRoot().setOnClickListener(this);
 
-        }
-
-        @Override
-        public void onClick(View view) {
-            if (itemClicker != null) itemClicker.onItemClick();
 
         }
     }

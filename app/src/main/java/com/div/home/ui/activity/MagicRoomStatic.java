@@ -20,6 +20,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.div.home.R;
+import com.div.home.model.Appliance;
 import com.div.home.ui.adapter.ApplianceAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -439,7 +440,7 @@ public class MagicRoomStatic extends AppCompatActivity implements View.OnClickLi
     }
 
     @Override
-    public void onItemClick() {
+    public void onItemClick(Appliance appliance) {
 
     }
 }

@@ -1,5 +1,7 @@
 package com.div.home.model;
 
+import androidx.annotation.Nullable;
+
 import com.div.home.util.Utils;
 
 import org.parceler.Parcel;
@@ -67,5 +69,19 @@ public class Appliance {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    @Override
+    public boolean equals(@Nullable Object obj) {
+        Appliance appliance = (Appliance) obj;
+        return id.equals(appliance.getId());
     }
 }
