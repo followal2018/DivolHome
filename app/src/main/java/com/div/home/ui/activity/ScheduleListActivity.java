@@ -45,7 +45,7 @@ public class ScheduleListActivity extends BaseActivity {
         });
     }
 
-    public void onClickAddSchedule(){
-
+    public void onClickAddSchedule() {
+        startActivity(AddScheduleActivity.getIntent(this));
     }
 }

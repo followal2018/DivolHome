@@ -162,7 +162,6 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
                 Log.e(TAG, "Exception: " + databaseError);
             }
         });
-
     }
 
     @Override
@@ -211,7 +210,6 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
                 .duration(200)
                 .playOn(dialogDeleteBinding.getRoot());
     }
-
 
     public void checkRoomIsShared(String roomName) {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("rooms")

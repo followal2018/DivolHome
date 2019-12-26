@@ -167,5 +167,17 @@
     <string name="you_can_add_only_one_member_so_if_new_you_add_new_member_then_old_member_will_be_removed_for_continue_click_on_ok_and_to_cancel_the_process_click_on_cancel">You can Add Only one member so if new you add new member then old member will be removed for continue click on \'Ok\' and to cancel the process click on \'Cancel\'</string>
     <string name="select_rooms_to_share">Select Rooms To Share</string>
     <string name="users">Users</string>
+    <string name="schedule_setup">Schedule Setup</string>
+    <string name="schedule_save">SAVE</string>
+    <string name="f">F</string>
+    <string name="w">W</string>
+    <string name="t">T</string>
+    <string name="m">M</string>
+    <string name="s">S</string>
+    <string name="repeat">REPEAT</string>
+    <string name="select_time">SELECT TIME</string>
+    <string name="notify">NOTIFY</string>
+    <string name="enter_a_title">Enter a Title</string>
+    <string name="set_a_title">Set a Title</string>
 
 </resources>

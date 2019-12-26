@@ -11,6 +11,11 @@ public class Constants {
     public static final String LIVE_URL = "https://api.followal.com/"; // Live New Server Url
     public static final String LOCAL_URL = "http://192.168.0.161:3005/"; // Live New Server Url
     public static final int GPS_REQUEST = 999;
+
+
+    public static final String[] customWeekDays = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+
+
     public static String DEBUG_URL = BuildConfig.DEBUG ? LOCAL_URL : LIVE_URL;//Testing Local server
     public static String VERSION = "api/v1/"; // Live New Server Url
     public static String BASE_URL = String.format("%s%s", DEBUG_URL, VERSION);
