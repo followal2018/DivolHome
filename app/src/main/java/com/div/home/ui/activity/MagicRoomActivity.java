@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,11 +34,11 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.ItemClickListener {
     private static final String TAG = MagicRoomActivity.class.getSimpleName();
     private static final int SETTING_WIFI_REQUEST = 1115;
-    private String userId;
     private final ArrayList<Appliance> containts = new ArrayList<>();
     ActivityMagicRoomBinding binding;
     FirebaseDatabase mDatabase;
     DatabaseReference myRef;
+    private String userId;
     private ApplianceAdapter adapter;
 
     public static Intent getIntent(Context context, String message, String userId) {
@@ -77,7 +78,8 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
         myRef.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
+                binding.rvAppliances.setVisibility(View.VISIBLE);
+                binding.flProgressLayout.setVisibility(View.GONE);
                 if (!dataSnapshot.getKey().equals("wifi")) {
                     Appliance appliance = new Appliance();
                     if (dataSnapshot.child("id").getValue() != null)

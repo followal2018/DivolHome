@@ -1,5 +1,6 @@
 package com.div.home.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,6 +26,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 public class SelectRoomsActivity extends BaseActivity {
 
@@ -36,6 +42,7 @@ public class SelectRoomsActivity extends BaseActivity {
     SelectRoomsAdapter adapter;
     ActivitySelectRoomsBinding binding;
     String shareToUserId;
+    ProgressDialog progressDialog;
 
     public static Intent getIntent(Context context, String shareToUserId) {
         Intent intent = new Intent(context, SelectRoomsActivity.class);
@@ -52,16 +59,30 @@ public class SelectRoomsActivity extends BaseActivity {
         binding.rvRooms.setLayoutManager(new LinearLayoutManager(SelectRoomsActivity.this));
         adapter = new SelectRoomsAdapter(SelectRoomsActivity.this);
         binding.rvRooms.setAdapter(adapter);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Sharing...");
+        progressDialog.setCancelable(false);
         fetchRooms();
     }
 
     public void onClickProceed() {
         if (adapter != null && !adapter.getSelectedRooms().isEmpty()) {
+            progressDialog.show();
             List<String> roomsToShare = adapter.getSelectedRooms();
             for (String room : roomsToShare) {
                 shareRoom(room);
             }
             addShareFrom();
+
+            Observable.timer(60000, TimeUnit.MILLISECONDS)
+                    .observeOn(AndroidSchedulers.mainThread()).doOnNext(new Consumer<Long>() {
+                @Override
+                public void accept(Long aLong) {
+                    progressDialog.dismiss();
+                    finish();
+                }
+            }).subscribe();
+
         } else {
             Toast.makeText(this, "Please Select Room To Share", Toast.LENGTH_LONG).show();
         }

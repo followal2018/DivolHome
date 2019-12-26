@@ -14,6 +14,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 public class FamilyActivity extends BaseActivity {
+    private static final int REQUEST_SELECT_ROOMS = 111;
 
     ActivityFamilyBinding binding;
     private IntentIntegrator qrScan;
@@ -47,7 +48,7 @@ public class FamilyActivity extends BaseActivity {
                 Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
             } else {
                 try {
-                    startActivity(SelectRoomsActivity.getIntent(FamilyActivity.this, result.getContents()));
+                    startActivityForResult(SelectRoomsActivity.getIntent(FamilyActivity.this, result.getContents()), REQUEST_SELECT_ROOMS);
                     Toast.makeText(this, result.getContents(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -55,6 +56,9 @@ public class FamilyActivity extends BaseActivity {
                 }
             }
         } else {
+           /* if(requestCode == REQUEST_SELECT_ROOMS && resultCode == RESULT_OK){
+                finish();
+            }*/
             super.onActivityResult(requestCode, resultCode, data);
         }
     }

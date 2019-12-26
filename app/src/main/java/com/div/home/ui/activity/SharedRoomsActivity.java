@@ -3,6 +3,7 @@ package com.div.home.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,13 +28,12 @@ import java.util.Objects;
 
 public class SharedRoomsActivity extends BaseActivity implements SharedRoomsAdapter.ItemClickListener {
     private static final String EXTRA_SHARED_FROM_USER_ID = "extra_shared_from_user_id";
-
-    private String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().trim();
     String sharedFromUserId;
     ActivitySharedRoomsBinding binding;
     SharedRoomsAdapter adapter;
     FirebaseDatabase mDatabase = FirebaseDatabase.getInstance();
     List<SharedRoom> sharedRooms = new ArrayList<>();
+    private String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid().trim();
 
     public static Intent getIntent(Context context, String sharedFromUserId) {
         Intent intent = new Intent(context, SharedRoomsActivity.class);
@@ -89,6 +89,8 @@ public class SharedRoomsActivity extends BaseActivity implements SharedRoomsAdap
         mGetReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                binding.rvRooms.setVisibility(View.VISIBLE);
+                binding.flProgressLayout.setVisibility(View.GONE);
                 if (dataSnapshot.getKey() != null) {
                     SharedRoom sharedRoom = new SharedRoom();
                     sharedRoom.setRoomName(dataSnapshot.getKey().toString());

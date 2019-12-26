@@ -133,6 +133,8 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         mGetReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                binding.rvRooms.setVisibility(View.VISIBLE);
+                binding.flProgressLayout.setVisibility(View.GONE);
                 contain.add(String.valueOf(dataSnapshot.getKey()).toUpperCase());
                 binding.rvRooms.setLayoutManager(new LinearLayoutManager(HomeScreenActivity.this));
                 adapter = new RoomsAdapter(HomeScreenActivity.this, contain);
@@ -277,7 +279,7 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         myRef.removeValue();
     }
 
-    public void removeRoomFromShareTo(String userToId, String roomName){
+    public void removeRoomFromShareTo(String userToId, String roomName) {
         DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("sharedTo").child(userToId).child(roomName);
         myRef.removeValue();
     }

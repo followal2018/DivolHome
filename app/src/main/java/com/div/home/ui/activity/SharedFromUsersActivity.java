@@ -3,6 +3,7 @@ package com.div.home.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,6 +26,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
 
 public class SharedFromUsersActivity extends BaseActivity implements SharedFromUsersAdapter.ItemClickListener {
 
@@ -57,6 +63,8 @@ public class SharedFromUsersActivity extends BaseActivity implements SharedFromU
         mGetReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                binding.rvSchedules.setVisibility(View.VISIBLE);
+                binding.flProgressLayout.setVisibility(View.GONE);
                 fetchUserProfile(String.valueOf(dataSnapshot.getKey()));
             }
 
@@ -77,9 +85,19 @@ public class SharedFromUsersActivity extends BaseActivity implements SharedFromU
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                binding.rvSchedules.setVisibility(View.VISIBLE);
+                binding.flProgressLayout.setVisibility(View.GONE);
             }
         });
+
+        Observable.timer(60000, TimeUnit.MILLISECONDS)
+                .observeOn(AndroidSchedulers.mainThread()).doOnNext(new Consumer<Long>() {
+            @Override
+            public void accept(Long aLong) {
+                binding.rvSchedules.setVisibility(View.VISIBLE);
+                binding.flProgressLayout.setVisibility(View.GONE);
+            }
+        }).subscribe();
     }
 
     public void fetchUserProfile(final String userId) {
@@ -88,7 +106,6 @@ public class SharedFromUsersActivity extends BaseActivity implements SharedFromU
         mGetReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-
                 if (dataSnapshot.hasChild("first name")) {
                     User user = new User();
                     user.setUserId(userId);

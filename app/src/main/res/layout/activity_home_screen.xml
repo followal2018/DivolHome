@@ -252,8 +252,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txtDisplayTemp"
             tools:targetApi="o" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvRooms"
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="8dp"
@@ -265,7 +264,28 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline26" />
+            app:layout_constraintTop_toTopOf="@+id/guideline26">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvRooms"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/flProgressLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center" />
+
+            </FrameLayout>
+
+        </FrameLayout>
 
         <TextView
             android:id="@+id/btnSharedRooms"
