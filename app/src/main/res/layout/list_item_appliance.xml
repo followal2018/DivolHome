@@ -10,6 +10,7 @@
         android:layout_marginTop="6dp"
         android:layout_marginRight="12dp"
         android:layout_marginBottom="6dp"
+        android:elevation="12dp"
         app:cardBackgroundColor="@color/appliance_off"
         app:cardCornerRadius="12dp">
 

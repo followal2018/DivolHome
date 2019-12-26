@@ -23,7 +23,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.ConnectDeviceActivity"></activity>
+        <activity android:name=".ui.activity.SharedFromUsersActivity"></activity>
+        <activity android:name=".ui.activity.SharedRoomsActivity" />
+        <activity android:name=".ui.activity.SelectRoomsActivity" />
+        <activity android:name=".ui.activity.AddScheduleActivity" />
+        <activity android:name=".ui.activity.ScheduleListActivity" />
+        <activity android:name=".ui.activity.ConnectDeviceActivity" />
         <activity android:name=".ui.activity.WifiSettingsActivity" />
         <activity android:name=".ui.activity.AddApplianceActivity" />
         <activity android:name=".ui.activity.BecomeMemberActivity" />
@@ -67,7 +72,7 @@
             tools:ignore="InnerclassSeparator" />
         <activity
             android:name=".ui.activity.SettingsActivity"
-            android:configChanges="orientation"
+            android:configChanges="uiMode"
             android:screenOrientation="portrait"
             tools:ignore="InnerclassSeparator" />
         <activity

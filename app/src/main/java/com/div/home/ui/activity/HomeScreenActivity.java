@@ -30,10 +30,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
@@ -101,12 +103,17 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
     }
 
     public void onClickTimer() {
-        startActivity(SetTimerActivity.getIntent(this));
+        startActivity(ScheduleListActivity.getIntent(this));
         overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 
     public void onClickAI() {
         startActivity(WebUrlViewActivity.getIntent(this));
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+    }
+
+    public void onClickSharedRooms() {
+        startActivity(SharedFromUsersActivity.getIntent(this));
         overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 
@@ -167,7 +174,7 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         String title1 = ((TextView) Objects.requireNonNull(binding.rvRooms.findViewHolderForAdapterPosition(position))
                 .itemView.findViewById(R.id.roomNameHomeScreenTV)).getText().toString().toLowerCase();
 
-        Intent intent1 = MagicRoomActivity.getIntent(this, title1)
+        Intent intent1 = MagicRoomActivity.getIntent(this, title1, userId)
                 .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent1);
         overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
@@ -186,12 +193,8 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         dialogDeleteBinding.btnYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String adder = title1.toLowerCase();
-                DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(userId).child("rooms").child(adder);
-                ref.removeValue();
-                finish();
-                startActivity(getIntent());
-                overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+                String roomName = title1.toLowerCase();
+                checkRoomIsShared(roomName);
             }
         });
         dialogDeleteBinding.btnNo.setOnClickListener(new View.OnClickListener() {
@@ -205,6 +208,78 @@ public class HomeScreenActivity extends BaseActivity implements RoomsAdapter.Ite
         YoYo.with(Techniques.Landing)
                 .duration(200)
                 .playOn(dialogDeleteBinding.getRoot());
+    }
+
+
+    public void checkRoomIsShared(String roomName) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("rooms")
+                .child(roomName).child("sharedTo");
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                if (dataSnapshot.getValue() != null) {
+                    Map<String, Object> userMap = (Map<String, Object>) dataSnapshot.getValue();
+                    for (String shareToUserId : userMap.keySet()) {
+                        removeRoomFromShareToUser(shareToUserId, roomName);
+                    }
+                    deleteRoom(roomName);
+                } else {
+                    deleteRoom(roomName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void removeRoomFromShareToUser(String userToId, String roomName) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("sharedTo").child(userToId);
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, Object> roomsMap = (Map<String, Object>) dataSnapshot.getValue();
+                if (roomsMap.size() == 1) {
+                    //delete user and Delete from Other User's ShareFrom
+                    deleteUserFromShareToUser(userToId, roomName);
+                    deleteUserFromShareFromUser(userToId, roomName);
+                } else {
+                    // remove only selected Room
+                    removeRoomFromShareTo(userToId, roomName);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    public void deleteRoom(String roomName) {
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("users").child(userId).child("rooms").child(roomName);
+        ref.removeValue();
+        finish();
+        startActivity(getIntent());
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+    }
+
+    public void deleteUserFromShareToUser(String userToId, String roomName) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("sharedTo").child(userToId);
+        myRef.removeValue();
+    }
+
+    public void deleteUserFromShareFromUser(String userToId, String roomName) {
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userToId).child("sharedFrom").child(userId);
+        myRef.removeValue();
+    }
+
+    public void removeRoomFromShareTo(String userToId, String roomName){
+        DatabaseReference myRef = FirebaseDatabase.getInstance().getReference("users").child(userId).child("sharedTo").child(userToId).child(roomName);
+        myRef.removeValue();
     }
 
     public void getWhetherInfo() {

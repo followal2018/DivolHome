@@ -26,14 +26,14 @@
             android:id="@+id/txtNotification"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:gravity="start|center_vertical"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
             android:text="@string/welcome_tom"
+            android:textSize="22sp"
             android:textStyle="bold"
-            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@+id/guideline5"
-            app:layout_constraintEnd_toStartOf="@+id/guideline17"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -122,14 +122,16 @@
             android:elevation="12dp"
             android:onClick="@{()-> activity.onClickTimer()}"
             android:scaleType="fitCenter"
-            android:scaleX="0.8"
-            android:scaleY=".8"
+            android:scaleX="0.63"
+            android:scaleY="0.63"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toStartOf="@+id/guideline21"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@+id/guideline20"
             app:layout_constraintTop_toTopOf="@+id/guideline18"
-            app:srcCompat="@drawable/ic_timer_black_24dp"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/ic_watch_later__1"
             tools:targetApi="lollipop" />
 
         <ImageButton
@@ -179,14 +181,14 @@
             android:elevation="12dp"
             android:onClick="@{()-> activity.onClickSetting()}"
             android:scaleType="fitCenter"
-            android:scaleX="0.8"
-            android:scaleY=".8"
+            android:scaleX="0.63"
+            android:scaleY="0.63"
             android:tint="@color/colorPrimaryLight"
             app:layout_constraintBottom_toTopOf="@+id/guideline19"
             app:layout_constraintEnd_toEndOf="@+id/imageView3"
             app:layout_constraintStart_toStartOf="@+id/guideline22"
             app:layout_constraintTop_toTopOf="@+id/guideline18"
-            app:srcCompat="@drawable/ic_settings_black_24dp"
+            app:srcCompat="@drawable/ic_setting_home"
             tools:targetApi="lollipop" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -240,10 +242,10 @@
             android:id="@+id/txtCityState"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/_8sdp"
             android:autoSizeTextType="uniform"
             android:gravity="center_horizontal|top"
             android:text="@string/loading"
-            android:layout_marginBottom="@dimen/_8sdp"
             app:layout_constraintBottom_toTopOf="@+id/guideline24"
             app:layout_constraintEnd_toStartOf="@+id/guideline22"
             app:layout_constraintStart_toStartOf="@+id/guideline20"
@@ -265,12 +267,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/guideline26" />
 
-        <Button
+        <TextView
             android:id="@+id/btnSharedRooms"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:background="@drawable/back_shared_rooms"
             android:gravity="center"
+            android:onClick="@{()-> activity.onClickSharedRooms()}"
             android:padding="@dimen/_8sdp"
             android:text="@string/shared_rooms"
             android:textColor="@color/white"

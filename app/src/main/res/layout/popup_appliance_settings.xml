@@ -9,7 +9,6 @@
     android:padding="50dp"
     android:background="@drawable/popup_background_white">
 
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,15 +17,14 @@
         android:textSize="30sp"
         android:gravity="center"
         android:textColor="@color/colorPrimaryText"
-        android:layout_marginBottom="20dp"
-        />
+        android:layout_marginBottom="20dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:gravity="center">
+
         <Button
             android:id="@+id/minusSpeedBT"
             android:layout_width="70dp"
@@ -34,7 +32,6 @@
             android:background="@drawable/yellow_circle"
             android:text="@string/minus"
             android:layout_gravity="center"
-
             android:textStyle="bold"
             android:textSize="30sp"
             android:textColor="@color/QRCodeWhiteColor"  />
@@ -49,7 +46,6 @@
             android:padding="12dp"
             android:text="@string/_04"
             android:textColor="@color/colorPrimaryText"
-
             android:textStyle="bold"
             tools:ignore="UnusedAttribute" />
 
@@ -64,10 +60,6 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-
     </LinearLayout>
-
-
-
 
 </LinearLayout>

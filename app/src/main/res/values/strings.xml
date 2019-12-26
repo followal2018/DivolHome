@@ -160,5 +160,12 @@
     <string name="done">Done</string>
     <string name="shared_rooms">Shared Rooms</string>
     <string name="scan_to_add_members">SCAN TO ADD MEMBERS</string>
+    <string name="cancel">Cancel</string>
+    <string name="leave_old_shared_rooms">Leave Old Shared Rooms</string>
+    <string name="you_can_only_be_member_of_single_user_s_rooms_so_click_ok_to_continue_and_remove_previous_shared_rooms_and_become_member_of_new_user_s_rooms_or_to_cancel_click_on_cancel">You can only be member of Single user\'s rooms. So Click \'Ok\' to continue and remove previous shared rooms and become member of new User\'s rooms or to cancel click on \'cancel\'.</string>
+    <string name="old_member_will_be_removed">Old member will be Removed!</string>
+    <string name="you_can_add_only_one_member_so_if_new_you_add_new_member_then_old_member_will_be_removed_for_continue_click_on_ok_and_to_cancel_the_process_click_on_cancel">You can Add Only one member so if new you add new member then old member will be removed for continue click on \'Ok\' and to cancel the process click on \'Cancel\'</string>
+    <string name="select_rooms_to_share">Select Rooms To Share</string>
+    <string name="users">Users</string>
 
 </resources>

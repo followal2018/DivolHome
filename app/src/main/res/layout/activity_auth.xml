@@ -15,14 +15,9 @@
         android:layout_height="match_parent"
         tools:context=".ui.activity.AuthActivity">
 
-        <com.github.florent37.diagonallayout.DiagonalLayout
+        <FrameLayout
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:contentDescription="@string/todo"
-            android:elevation="10dp"
-            app:diagonal_angle="28"
-            app:diagonal_direction="left"
-            app:diagonal_position="bottom"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -30,25 +25,46 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0">
 
-            <ImageView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimaryDark"
-                android:scaleType="centerCrop" />
+                android:layout_height="match_parent">
 
-        </com.github.florent37.diagonallayout.DiagonalLayout>
+                <com.github.florent37.diagonallayout.DiagonalLayout
+                    android:id="@+id/diagonalLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="10dp"
+                    android:elevation="10dp"
+                    app:diagonal_angle="28"
+                    app:diagonal_direction="left"
+                    app:diagonal_position="bottom">
 
-        <!--<ImageView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:contentDescription="@string/todo"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/shape_square" />-->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@color/colorPrimaryDark"
+                        android:scaleType="centerCrop" />
+
+                </com.github.florent37.diagonallayout.DiagonalLayout>
+            </FrameLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/btnProceed"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="@dimen/_32sdp"
+                android:elevation="@dimen/_15sdp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_launcher"
+                app:backgroundTint="@color/white"
+                app:fabCustomSize="140dp"
+                app:maxImageSize="140dp"
+                app:tint="@null" />
+
+        </FrameLayout>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline6"
@@ -56,102 +72,6 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.61" />
-
-        <!--<ImageView
-            android:id="@+id/imgWifi"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:contentDescription="@string/todo"
-            android:rotation="45"
-            android:tint="@color/colorPrimaryLight"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toStartOf="@+id/guideline11"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline15"
-            app:srcCompat="@drawable/ic_signal_wifi_4_bar_black_24dp" />
--->
-       <!-- <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline7"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.45" />-->
-
-       <!-- <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent=".25" />-->
-
-       <!-- <ImageView
-            android:id="@+id/imgHome"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="16dp"
-            android:contentDescription="@string/todo"
-            android:tint="@color/colorPrimaryLight"
-            app:layout_constraintBottom_toTopOf="@+id/guideline10"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline8"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_home_icon" />-->
-
-        <!--<androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.70" />-->
-
-       <!-- <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline10"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.21" />-->
-
-        <!--<androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.47" />-->
-
-       <!-- <ImageView
-            android:id="@+id/imgMoon"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/todo"
-            android:rotation="270"
-            android:tint="@color/colorPrimaryLight"
-            app:layout_constraintBottom_toTopOf="@+id/guideline7"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline11"
-            app:layout_constraintTop_toTopOf="@+id/guideline10"
-            app:srcCompat="@drawable/ic_moon" />
--->
-        <!--<ImageView
-            android:id="@+id/imgRainbow"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/todo"
-            android:tint="@color/colorPrimaryLight"
-            app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imgWifi"
-            app:layout_constraintTop_toTopOf="@+id/guideline7"
-            app:srcCompat="@drawable/ic_rainbow" />-->
 
         <ImageView
             android:layout_width="0dp"
@@ -202,41 +122,12 @@
             app:layout_constraintTop_toTopOf="@+id/guideline6"
             tools:targetApi="lollipop" />
 
-       <!-- <ImageView
-            android:id="@+id/imgStart"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
-            android:contentDescription="@string/todo"
-            android:tint="@color/colorPrimaryLight"
-            app:layout_constraintBottom_toTopOf="@+id/guideline15"
-            app:layout_constraintEnd_toStartOf="@+id/guideline11"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/guideline14"
-            app:srcCompat="@drawable/ic_star" />-->
-
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.07" />
-
-        <!--<androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline15"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.28" />-->
-
-        <!--<androidx.constraintlayout.widget.Guideline
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.3652531" />-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

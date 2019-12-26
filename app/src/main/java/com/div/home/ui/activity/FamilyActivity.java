@@ -13,9 +13,6 @@ import com.div.home.ui.base.BaseActivity;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 public class FamilyActivity extends BaseActivity {
 
     ActivityFamilyBinding binding;
@@ -34,12 +31,12 @@ public class FamilyActivity extends BaseActivity {
     }
 
     public void onClickAddFamily() {
-        startActivity(AddMemberActivity.getIntent(this));
-        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
+        qrScan.initiateScan();
     }
 
     public void onClickBecomeFamily() {
-        qrScan.initiateScan();
+        startActivity(AddMemberActivity.getIntent(this));
+        overridePendingTransition(R.anim.slide_right_in, R.anim.slide_left_out);
     }
 
     @Override
@@ -50,10 +47,9 @@ public class FamilyActivity extends BaseActivity {
                 Toast.makeText(this, "Result Not Found", Toast.LENGTH_LONG).show();
             } else {
                 try {
-                    JSONObject obj = new JSONObject(result.getContents());
-                    String scanQRresult = obj.getString("name");
-                    Toast.makeText(this, scanQRresult, Toast.LENGTH_SHORT).show();
-                } catch (JSONException e) {
+                    startActivity(SelectRoomsActivity.getIntent(FamilyActivity.this, result.getContents()));
+                    Toast.makeText(this, result.getContents(), Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(this, result.getContents(), Toast.LENGTH_LONG).show();
                 }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtRoomName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="1dp"
+            android:layout_weight="1"
+            android:autoSizeTextType="uniform"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:padding="20dp"
+            android:text="@{text}"
+            android:textColor="@color/colorTextGrey"
+            android:textSize="20sp"
+            tools:ignore="UnusedAttribute"
+            tools:targetApi="m" />
+
+        <ImageView
+            android:id="@+id/imgSelection"
+            android:layout_width="@dimen/_36sdp"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_gravity="center_vertical"
+            android:padding="@dimen/_8sdp"
+            android:visibility="visible"
+            app:srcCompat="@drawable/ic_right_tick" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorTextGrey" />
+
+</LinearLayout>

@@ -17,7 +17,6 @@ import com.div.home.model.Appliance;
 import com.div.home.ui.adapter.ApplianceAdapter;
 import com.div.home.ui.base.BaseActivity;
 import com.div.home.ui.dialog.SelectApplianceDialog;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -34,16 +33,17 @@ import static android.content.Intent.FLAG_ACTIVITY_CLEAR_TOP;
 public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.ItemClickListener {
     private static final String TAG = MagicRoomActivity.class.getSimpleName();
     private static final int SETTING_WIFI_REQUEST = 1115;
-    private final String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+    private String userId;
     private final ArrayList<Appliance> containts = new ArrayList<>();
     ActivityMagicRoomBinding binding;
     FirebaseDatabase mDatabase;
     DatabaseReference myRef;
     private ApplianceAdapter adapter;
 
-    public static Intent getIntent(Context context, String message) {
+    public static Intent getIntent(Context context, String message, String userId) {
         Intent intent = new Intent(context, MagicRoomActivity.class);
         intent.putExtra("roomName", message);
+        intent.putExtra("userId", userId);
         return intent;
     }
 
@@ -52,10 +52,11 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_magic_room);
         binding.setActivity(this);
-
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         String RoomNameSTR = Objects.requireNonNull(bundle.getString("roomName")).toUpperCase();
+        userId = bundle.getString("userId");
+        wifiChecker();
         binding.txtRoomName.setText(RoomNameSTR);
         binding.rvAppliances.setLayoutManager(new LinearLayoutManager(MagicRoomActivity.this));
         adapter = new ApplianceAdapter(MagicRoomActivity.this, containts);
@@ -90,11 +91,7 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
                     if (dataSnapshot.child("status").getValue() != null)
                         appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
                     appliance.setKey(dataSnapshot.getKey());
-                    /*if (containts.contains(appliance)) {
-                        containts.set(containts.indexOf(appliance), appliance);
-                    } else {*/
                     containts.add(appliance);
-                    /*}*/
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -105,19 +102,19 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
                 if (!dataSnapshot.getKey().equals("wifi")) {
                     Appliance appliance = new Appliance();
                     if (dataSnapshot.child("id").getValue() != null)
-                    appliance.setId(dataSnapshot.child("id").getValue().toString());
+                        appliance.setId(dataSnapshot.child("id").getValue().toString());
                     if (dataSnapshot.child("displayName").getValue() != null)
-                    appliance.setDisplayName(dataSnapshot.child("displayName").getValue().toString());
+                        appliance.setDisplayName(dataSnapshot.child("displayName").getValue().toString());
                     if (dataSnapshot.child("icon").getValue() != null)
-                    appliance.setIcon(Integer.parseInt(dataSnapshot.child("icon").getValue().toString()));
+                        appliance.setIcon(Integer.parseInt(dataSnapshot.child("icon").getValue().toString()));
                     if (dataSnapshot.child("image").getValue() != null)
-                    appliance.setImage(dataSnapshot.child("image").getValue().toString());
+                        appliance.setImage(dataSnapshot.child("image").getValue().toString());
                     if (dataSnapshot.child("status").getValue() != null)
-                    appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
+                        appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
                     appliance.setKey(dataSnapshot.getKey());
 
                     int index = containts.indexOf(appliance);
-                    if(index >=0 && index < containts.size()){
+                    if (index >= 0 && index < containts.size()) {
                         containts.set(index, appliance);
                         adapter.notifyItemChanged(index);
                     }
@@ -135,7 +132,7 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
                     appliance.setStatus(Integer.parseInt(dataSnapshot.child("status").getValue().toString()));
                     appliance.setKey(dataSnapshot.getKey());
                     final int index = containts.indexOf(appliance);
-                    if(index >=0 && index < containts.size()){
+                    if (index >= 0 && index < containts.size()) {
                         containts.remove(appliance);
                         adapter.notifyItemChanged(index);
                     }
@@ -157,7 +154,7 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
     @Override
     public void onStart() {
         super.onStart();
-        wifiChecker();
+
     }
 
     private void wifiChecker() {
@@ -183,7 +180,6 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
                             Toast.makeText(MagicRoomActivity.this, "Ready!", Toast.LENGTH_SHORT).show();
                         } else {
                             Toast.makeText(MagicRoomActivity.this, "Select Appliance", Toast.LENGTH_SHORT).show();
-//                            openSelectApplianceDialog();
                         }
                     }
                 } else {
@@ -200,7 +196,6 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
     }
 
     public void openSelectApplianceDialog() {
-
         runOnUiThread(() -> {
             Bundle bundle = getIntent().getExtras();
             assert bundle != null;
@@ -220,7 +215,6 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
             });
             dialog.show(getSupportFragmentManager(), null);
         });
-
     }
 
     @Override
@@ -233,7 +227,6 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
     }
 
     public void onClickAddAppliance() {
-
         Bundle bundle = getIntent().getExtras();
         assert bundle != null;
         String roomName = Objects.requireNonNull(bundle.getString("roomName")).toLowerCase();
@@ -251,14 +244,6 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
             }
         });
         dialog.show(getSupportFragmentManager(), null);
-
-        /*Bundle bundle = getIntent().getExtras();
-        assert bundle != null;
-        String RoomNameSTR = bundle.getString("roomName");
-        Intent k = AddApplianceActivity.getIntent(this)
-                .setFlags(FLAG_ACTIVITY_CLEAR_TASK | FLAG_ACTIVITY_CLEAR_TOP);
-        k.putExtra("RoomNameSTR", RoomNameSTR);
-        startActivity(k);*/
     }
 
     public void onClickSyncDevice() {
@@ -278,6 +263,8 @@ public class MagicRoomActivity extends BaseActivity implements ApplianceAdapter.
             case SETTING_WIFI_REQUEST:
                 if (resultCode == RESULT_OK) {
                     openSelectApplianceDialog();
+                } else {
+                    finish();
                 }
                 break;
         }
